@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filterable List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="center-align">My Contacts</h1>
+      <input type="text" id="filterInput" placeholder="Search names..." />
+      <ul id="names">
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h5>A</h5>
+          </li>
+          <li class="collection-item"><a href="#">Anna mamae</a></li>
+          <li class="collection-item"><a href="#">Appa</a></li>
+          <li class="collection-item"><a href="#">Anna</a></li>
+          <li class="collection-item"><a href="#">Akka</a></li>
+        </ul>
+
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h5><b>B</b></h5>
+          </li>
+          <li class="collection-item"><a href="#">Beast</a></li>
+          <li class="collection-item"><a href="#">Bheem</a></li>
+          <li class="collection-item"><a href="#">Burman</a></li>
+          <li class="collection-item"><a href="#">Bopal</a></li>
+        </ul>
+
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h5><b>C</b></h5>
+          </li>
+          <li class="collection-item"><a href="#">Cathy</a></li>
+          <li class="collection-item"><a href="#">Carol</a></li>
+          <li class="collection-item"><a href="#">Cammie</a></li>
+          <li class="collection-item"><a href="#">Cucumber</a></li>
+        </ul>
+      </ul>
+    </div>
+    <script>
+      let filterInput = document.getElementById("filterInput");
+      //add Event
+      //keyup is an listener triggered when a key press is removed can be used for search
+      filterInput.addEventListener("keyup", filterNames);
+
+      function filterNames() {
+        //get value of input
+        let filterValue = document
+          .getElementById("filterInput")
+          .value.toUpperCase();
+        let ul = document.getElementById("names");
+
+        let li = ul.querySelectorAll("li.collection-item");
+        //loopin through
+        for (let i = 0; i < li.length; i++) {
+          let a = li[i].getElementsByTagName("a")[0];
+          console.log(a);
+          if (a.innerHTML.toUpperCase().indexOf(filterValue) > -1) {
+            li[i].style.display = "flex";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
